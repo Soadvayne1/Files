@@ -1,0 +1,27 @@
+'''
+Jeremy Johnson
+CIS245
+2/15/22
+'''
+import os
+
+while True:
+    fileDirectory = input('Please enter the directory you would like to add a file to: ')
+    
+    
+    if os.path.isdir(fileDirectory):
+        fileName = input('Please name your file: ')
+        userName = input('Please enter your First Name: ')
+        userAddr = input('Please enter your Street Address: ')
+        userPN = input('Please enter your Phone Number: ')
+        with open(os.path.join(fileDirectory,fileName), 'w+') as f: # W+ added here as mode variable to allow both read and write in the same small chunk of code. 
+            f.write(userName + ', ' + userAddr+ ', ' + userPN + '\n') # write user input in comma seperated format to a file. 
+            print('This file contains the following content:\n')
+            f.seek(0) # returns the cursor back to the beginning of the file to read the contents. 
+            for line in f:
+                print(line)
+        break
+    
+    else:
+        print('\nThat directory does not exist, please enter a correct directory.\n')
+        continue
